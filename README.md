@@ -1,4 +1,5 @@
-# ![Logo](Imagens/food.png "Logo") Merenda
+![Logo](Imagens/food.png "Logo")
+
 ## API
 
 #### Download do Node + NPM
@@ -38,3 +39,12 @@ Todos pacotes com essa "categoria" utilziam do parâmetro `-g`
 1. [O que é JSON](https://www.youtube.com/watch?v=P81dE-tkaaA)
 1. [O que é REST](https://www.youtube.com/watch?v=S7MduKwvVGk)
 1. [Como funciona o HTTP](https://www.youtube.com/watch?v=fhAXgcD21iE)
+
+#### Materialize
+1. [Curso de Materialize CSS](https://www.nodestudio.com.br/curso/curso-de-materialize-css)
+1. [Documentação(ótimos exemplos)](https://materializecss.com/)
+
+#### AJAX
+
+1. [Documentação oficial](https://developer.mozilla.org/pt-BR/docs/Web/Guide/AJAX/Getting_Started)
+1. [Vídeo aula](https://www.youtube.com/watch?v=il0Dog9Y4xs)
