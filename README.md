@@ -1,7 +1,4 @@
-# Merenda
-Projeto de estudos - JS + Node + API
-
-
+# ![Logo](Imagens/food.png "Logo") Merenda
 ## API
 
 #### Download do Node + NPM
@@ -24,7 +21,7 @@ Todos pacotes com essa "categoria" utilziam do parâmetro `-g`
 1. Baixe o repositório(Somente a primeira vez)
 1. abra o (Terminal, CMD, PowerShell)
 1. Digite o seguinte comando `npm run dev`
-1.Para testar acesse o link: [http://localhost:3000](http://localhost:3000)
+1. Para testar acesse o link: [http://localhost:3000](http://localhost:3000)
 
 
 ## Dicas
