@@ -1,10 +1,12 @@
 const express = require('express');
-const api = express();
+var cors = require('cors');
 
+const api = express();
+api.use(cors());
 
 // ======================= Importação dos controllers =======================//
 
-    require('./Controllers/exemplo')(api);
+require('./Controllers/exemplo')(api);
 
 // =========================================================================//
 
