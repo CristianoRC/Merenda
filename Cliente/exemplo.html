@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exemplo Ajax</title>
+</head>
+
+<body>
+    <center>
+        <h1 id="resposta"></h1>
+        <button onclick="fazerRequisicao()">Fazer a requisição</button>
+    </center>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+    function fazerRequisicao() {
+        $.get(
+            {
+                url: "http://localhost:3000/api/teste/olamundo/",
+                success: (data) => {
+                    console.log(data);
+                    document.getElementById("resposta").innerText = data.mensagem;
+                },
+                error: (data) => {
+                    console.log(`Ocorreu um erro ao fazer a requisição:`);
+                    console.log(data);
+                    
+                    document.getElementById("resposta").innerText = "Erro ao fazer a requisição";
+                }
+            })
+    }
+</script>
+
+</html>
