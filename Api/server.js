@@ -8,6 +8,7 @@ api.use(cors());
 
 require('./Controllers/exemplo')(api);
 
+require('./Controllers/alimento')(api);
 // =========================================================================//
 
 const porta = 3000;
