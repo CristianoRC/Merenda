@@ -23,6 +23,7 @@ Todos pacotes com essa "categoria" utilizam do parâmetro `-g`
 #### Como rodar a api:
 1. Baixe o repositório(Somente a primeira vez)
 1. abra o (Terminal, CMD, PowerShell)
+1. Va para a pasta Api
 1. Digite o seguinte comando `npm run dev`
 1. Para testar acesse o link: [http://localhost:3000](http://localhost:3000)
 
