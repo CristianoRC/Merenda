@@ -2,10 +2,10 @@
 
 ## API
 
-Endpoints que utiliziaremos na API: [Endpoints](Endpoints.md)
+Endpoints que utilizaremos na API: [Endpoints](Endpoints.md)
 
 #### Download do Node + NPM
-Com a instalção do node o npm vem junto: [Download Node.js](https://nodejs.org/en/)
+Com a instalação do node o npm vem junto: [Download Node.js](https://nodejs.org/en/)
 
 [O que é Node?](https://pt.stackoverflow.com/questions/157034/o-que-%C3%A9-o-npm-e-o-node)
 
@@ -18,7 +18,7 @@ O npm tem uma "categoria" de pacotes que podem ser executadas no terminal, e no 
 
 Instalação: `npm install -g nodemon`
 
-Todos pacotes com essa "categoria" utilziam do parâmetro `-g`
+Todos pacotes com essa "categoria" utilizam do parâmetro `-g`
 
 #### Como rodar a api:
 1. Baixe o repositório(Somente a primeira vez)
