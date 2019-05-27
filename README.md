@@ -2,7 +2,7 @@
 
 ## API
 
-Endpoints que utilziaremos na API: [Endpoints](Endpoints.md)
+Endpoints que utiliziaremos na API: [Endpoints](Endpoints.md)
 
 #### Download do Node + NPM
 Com a instalção do node o npm vem junto: [Download Node.js](https://nodejs.org/en/)
