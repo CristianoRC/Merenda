@@ -1,14 +1,16 @@
 const express = require('express');
-var cors = require('cors');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const api = express();
 api.use(cors());
+api.use(bodyParser.urlencoded({ extended: false }));
+api.use(bodyParser.json());
 
 // ======================= Importação dos controllers =======================//
 
 require('./Controllers/exemplo')(api);
 
-require('./Controllers/alimento')(api);
 // =========================================================================//
 
 const porta = 3000;
