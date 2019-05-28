@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const bancoDeDados = require('../bancoDeDados');
+
+const bancoDeDados = require('./bancoDeDados');
 
 router.get('/olamundo', (request, response) => {
     if (bancoDeDados.conexao.state != 'authenticated')
