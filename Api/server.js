@@ -10,6 +10,7 @@ api.use(bodyParser.json());
 // ======================= Importação dos controllers =======================//
 
 require('./Controllers/exemplo')(api);
+require('./Controllers/alimento')(api);
 
 // =========================================================================//
 
