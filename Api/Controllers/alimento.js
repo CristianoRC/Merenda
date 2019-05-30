@@ -22,7 +22,7 @@ router.post('/', (request, response) => {
         if (bancoDeDados.conexao.state != 'authenticated')
             bancoDeDados.conexao.connect();
 
-        bancoDeDados.conexao.query(`insert into Alimento (Nome, Drescrição, Categorias) values('${request.body.mensagem}')`,
+        bancoDeDados.conexao.query(`insert into Alimento (Nome, Descrição, Categoria) values('${request.body.mensagem}')`,
             (erro, sucesso) => {
                 if (!erro) {
                     response.status(200);
