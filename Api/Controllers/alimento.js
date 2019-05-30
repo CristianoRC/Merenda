@@ -8,7 +8,7 @@ router.get('/:Id', (request, response) => {
     bancoDeDados.conexao.query(`select * from Alimento WHERE Id=${id}`, (erro, resultado) => {
         if (resultado.length === 0)
             response.status(404).json({ erro: 'O id informado não foi encontrado' });
-        else if(!erro)
+        else if (!erro)
             response.status(200).json(resultado);
         else
             response.status(400).json({ erro: erro });
@@ -20,14 +20,12 @@ router.delete('/:Id', (request, response) => {
     bancoDeDados.conexao.query(`delete from Alimento WHERE Id=${id}`, (erro, resultado) => {
         if (resultado.affectedRows === 0)
             response.status(404).json({ erro: 'O id informado não foi encontrado' });
-        else if(!erro)
+        else if (!erro)
             response.status(200).json('Deletado com sucesso!');
         else
             response.status(400).json({ erro: erro });
     });
 });
-
-
 
 router.post('/', (request, response) => {
     // Se o user preencher os campos vai entrar no IF
@@ -49,8 +47,6 @@ router.post('/', (request, response) => {
     response.send();
 
 });
-
-
 
 // Cadastra um novo Alimento 
 router.post('/', (request, response) => {
@@ -74,27 +70,23 @@ router.post('/', (request, response) => {
 
 });
 
-
 // Atualiza os dados do Alimento
 router.put('/:id', (request, response) => {
-        bancoDeDados.conexao.query(`select * from Alimento where Id = ${request.params.id}`),
+    bancoDeDados.conexao.query(`select * from Alimento where Id = ${request.params.id}`,
         (erro, resultado) => {
-            if(resultado.length === 0)
-                response.status(404);
-            if(!erro) 
+            if (resultado.length === 0)
+                response.status(404).send();
+            if (!erro)
                 bancoDeDados.conexao.query(`update Alimento set Nome = '${request.body.nome}', 
-                Descricao = '${request.body.descricao}', Categoria = '${request.body.categoria}' where Id = ${request.params.id}`, (erro, resultado) =>{
-                   if(erro) {
-                        response.status(400).json({ erro: erro });
-                    } else 
-                        response.status(200);                
-                   
-                })
+                Descricao = '${request.body.descricao}', Categoria = '${request.body.categoria}' where Id = ${request.params.id}`, (erro, resultado) => {
+                        if (erro) {
+                            response.status(400).json({ erro: erro }).send();
+                        } else
+                            response.status(200).send();
+                    });
             else
-                response.status(400).json({ Erro: erro }); 
-            } 
-           
+                response.status(400).json({ Erro: erro }).send();
         });
-
+});
 
 module.exports = (api) => api.use('/api/alimento', router);
