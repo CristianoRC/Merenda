@@ -10,6 +10,9 @@ let conexao = mysql.createConnection(
         charset: 'utf8'
     });
 
+if (conexao.state != 'authenticated')
+    conexao.connect();
+
 module.exports = {
     conexao: conexao
 }
