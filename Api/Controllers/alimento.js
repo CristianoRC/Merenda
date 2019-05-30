@@ -3,6 +3,17 @@ const router = express.Router();
 
 const bancoDeDados = require('./bancoDeDados');
 
+router.get('/:Id', (request, response) => {
+    bancoDeDados.conexao.query('select * from Alimento WHERE Id=' + parseInt(request.params.Id), (erro, resultado) => {
+        if (resultado.length === 0)
+            response.status(404).json({ erro: 'O id informado não foi encontrado' });
+        else if(!erro)
+            response.status(200).json(resultado);
+        else
+            response.status(400).json({ erro: erro });
+    });
+});
+
 
 
 router.post('/', (request, response) => {
