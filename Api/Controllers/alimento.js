@@ -15,6 +15,18 @@ router.get('/:Id', (request, response) => {
     });
 });
 
+router.delete('/:Id', (request, response) => {
+    const id = request.params.Id;
+    bancoDeDados.conexao.query(`delete from Alimento WHERE Id=${id}`, (erro, resultado) => {
+        if (resultado.affectedRows === 0)
+            response.status(404).json({ erro: 'O id informado não foi encontrado' });
+        else if(!erro)
+            response.status(200).json('Deletado com sucesso!');
+        else
+            response.status(400).json({ erro: erro });
+    });
+});
+
 
 
 router.post('/', (request, response) => {
