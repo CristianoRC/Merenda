@@ -4,8 +4,6 @@ const router = express.Router();
 const bancoDeDados = require('./bancoDeDados');
 
 router.get('/olamundo', (request, response) => {
-    if (bancoDeDados.conexao.state != 'authenticated')
-        bancoDeDados.conexao.connect();
 
     bancoDeDados.conexao.query('select * from MensagensDeTeste', (erro, resultado) => {
         if (!erro) {
@@ -19,8 +17,6 @@ router.get('/olamundo', (request, response) => {
 
 router.post('/olaMundo', (request, response) => {
     if (request.body) {
-        if (bancoDeDados.conexao.state != 'authenticated')
-            bancoDeDados.conexao.connect();
 
         bancoDeDados.conexao.query(`insert into MensagensDeTeste (texto) values('${request.body.mensagem}')`,
             (erro, sucesso) => {
