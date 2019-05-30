@@ -4,7 +4,8 @@ const router = express.Router();
 const bancoDeDados = require('./bancoDeDados');
 
 router.get('/:Id', (request, response) => {
-    bancoDeDados.conexao.query('select * from Alimento WHERE Id=' + parseInt(request.params.Id), (erro, resultado) => {
+    const id = request.params.Id;
+    bancoDeDados.conexao.query(`select * from Alimento WHERE Id=${id}`, (erro, resultado) => {
         if (resultado.length === 0)
             response.status(404).json({ erro: 'O id informado não foi encontrado' });
         else if(!erro)
