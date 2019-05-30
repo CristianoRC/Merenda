@@ -26,4 +26,28 @@ router.post('/', (request, response) => {
 
 });
 
+/* /api/alimento/{id} : PUT - Atualiza os dados do alimento.
+Se tudo ok 200
+Se der algum problema 400
+Se o Id não existir 404
+*/
+
+router.get('/:id', (request, response) => {
+
+    if(request.params.id) {
+        bancoDeDados.conexao.query(`select * from Alimento where id = '${request.params.id}'`),
+        (erro, resultado) => {
+            if(!erro)
+                response.status(200);
+            else
+                response.status(404).json({ Erro: erro });
+        }
+    }    
+    else 
+        response.status(400);
+
+        response.send();
+});
+
+
 module.exports = (api) => api.use('/api/alimento', router);
