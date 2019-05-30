@@ -46,17 +46,19 @@ Se o Id não existir 404
 router.put('/:id', (request, response) => {
 
     if(request.params.id) {
-        bancoDeDados.conexao.query(`select * from Alimento where Id = '${request.params.id}'`),
+        bancoDeDados.conexao.query(`select * from Alimento where Id = ${request.params.id}`),
         (erro, resultado) => {
             if(resultado.length == 0)
                 response.status(404);
             if(!erro) {
-                 bancoDeDados.conexao.query(`update Alimento set Nome = '${request.body.nome}', 
-                 Descricao = '${request.body.descricao}', Categoria = '${request.body.categoria}' `, response); 
-               
-                bancoDeDados.conexao.query(`select * from Alimento where Id = '${request.params.id}'`);
-                response.status(200).json({ Mensagem: resultado });
-               
+                bancoDeDados.conexao.query(`update Alimento set Nome = '${request.body.nome}', 
+                Descricao = '${request.body.descricao}', Categoria = '${request.body.categoria}' where Id = ${request.params.id}`, (erro, resultado) =>{
+                     if(erro) 
+                        response.status(400).json({ erro: erro });
+                     else 
+                        response.status(200);                
+                   
+                })
             } 
             else 
                 response.status(400).json({ Erro: erro }); 
