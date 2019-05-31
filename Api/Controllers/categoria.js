@@ -22,21 +22,21 @@ router.get('/', (request, response) => {
 
 router.delete('/:id', (request, response) => {
 
-    // Se ela estiver em FALSE, a categoria não foi excluida, se estiver em TRUE, a categoria foi 'excluida' 
-    bancoDeDados.conexao.query(`select Id from Categoria where Flag = false`, (erro, resultado) => {
-        if (erro){
-            response.status(404).json({ erro: erro }).send('O id não foi incontrado');
-            console.log({ erro: erro });
-        }
-        else if (!erro)
-            bancoDeDados.conexao.query(`update Categoria set Flag = true where Id = ${request.params.id}`, (deletado, result) => {
+    // Se Deletado estiver em FALSE, a categoria não foi excluida, se estiver em TRUE, a categoria foi 'excluida' 
+    bancoDeDados.conexao.query(`select * from Categoria where Deletado = false and Id = ${request.params.id}`, (erro, resultado) => {
+        if (resultado.length > 0)
+            response.status(200).send('O id foi incontrado');
+        else
+            response.status(400).send('O id já foi excluido');
+        if (!erro)
+            bancoDeDados.conexao.query(`update Categoria set Deletado = true where Id = ${request.params.id}`, (deletado, result) => {
                 if (!deletado)
                     response.status(200).send('Deletado com sucesso');
 
-                else{
+                else
                     response.status(400).json({ deletado: deletado });
-                     console.log({ deletado: deletado });
-                }
+
+
             });
 
     });
