@@ -28,6 +28,8 @@ router.delete('/:Id', (request, response) => {
             response.status(400).json({ erro: erro });
     });
 });
+
+
 // CADASTRA UM NOVO ALIMENTO
 router.post('/', (request, response) => {
     // Se o user preencher os campos vai entrar no IF
@@ -50,7 +52,7 @@ router.post('/', (request, response) => {
 
 });
 
-// Atualiza os dados do Alimento
+// ATUALIZA OS DADOS ALIMENTO
 router.put('/:id', (request, response) => {
     bancoDeDados.conexao.query(`select * from Alimento where Id = ${request.params.id}`,
         (erro, resultado) => {
@@ -58,7 +60,8 @@ router.put('/:id', (request, response) => {
                 response.status(404).send();
             if (!erro)
                 bancoDeDados.conexao.query(`update Alimento set Nome = '${request.body.nome}', 
-                Descricao = '${request.body.descricao}', Categoria = '${request.body.categoria}' where Id = ${request.params.id}`, (erro, resultado) => {
+                    Descricao = '${request.body.descricao}', Categoria = '${request.body.categoria}'
+                    where Id = ${request.params.id}`, (erro, resultado) => {
                         if (erro) {
                             response.status(400).json({ erro: erro }).send();
                         } else
