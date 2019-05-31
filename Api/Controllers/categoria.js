@@ -42,5 +42,34 @@ router.delete('/:id', (request, response) => {
     });
 });
 
+// ATUALIZA A CATEGORIA INFORMADA
+
+/*
+/api/categoria/{id} : PUT - Atualiza a categoria com id informado.
+
+200 - Tudo OK
+400 - Erro na validação dos campos
+404 - Id informado não existe
+*/
+
+router.put('/:id', (request, response) => {
+    bancoDeDados.conexao.query(`select * from Categoria where Deletado = false and Id = ${request.params.id}`,
+    (erro, resultado) => {
+        if(resultado.length === 0)
+            response.status(404).send('Id informado não foi encontrado');
+        if(!erro)
+              bancoDeDados.conexao.query(`update Categoria set Titulo = '${request.body.titulo}', 
+               Text = '${request.body.text}' where Id = ${request.params.id}`, 
+              (erro, resultado) => {
+                  if(erro)
+                    response.status(400).json({ erro: erro });
+                else 
+                    response.status(200).send('A categoria informada foi atualizada com sucesso!');
+              });
+        else 
+              response.status(400).json({ Erro: erro });
+    });
+
+});
 
 module.exports = (api) => api.use('/api/categoria', router);
