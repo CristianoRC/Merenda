@@ -44,13 +44,6 @@ router.delete('/:id', (request, response) => {
 
 // ATUALIZA A CATEGORIA INFORMADA
 
-/*
-/api/categoria/{id} : PUT - Atualiza a categoria com id informado.
-
-200 - Tudo OK
-400 - Erro na validação dos campos
-404 - Id informado não existe
-*/
 
 router.put('/:id', (request, response) => {
     bancoDeDados.conexao.query(`select * from Categoria where Deletado = false and Id = ${request.params.id}`,
