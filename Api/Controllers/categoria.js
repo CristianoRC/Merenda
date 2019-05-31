@@ -5,7 +5,7 @@ const bancoDeDados = require('./bancoDeDados');
 
 router.get('/', (request, response) => {
 
-    bancoDeDados.conexao.query('select * from Categoria', (erro, resultado) => {
+    bancoDeDados.conexao.query('select * from Categoria where Deletado = false', (erro, resultado) => {
         if (!erro) {
             response.status(200).json(resultado);
         }

@@ -54,7 +54,7 @@ router.post('/', (request, response) => {
 
 // ATUALIZA OS DADOS ALIMENTO
 router.put('/:id', (request, response) => {
-    bancoDeDados.conexao.query(`select * from Alimento where Id = ${request.params.id}`,
+    bancoDeDados.conexao.query(`select * from Alimento Id = ${request.params.id}`,
         (erro, resultado) => {
             if (resultado.length === 0)
                 response.status(404).send();
