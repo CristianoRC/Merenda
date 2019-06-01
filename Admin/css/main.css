@@ -1,0 +1,15 @@
+/* Cores: https://coolors.co/01579b-615756-539987-52ffb8-4dfff3 */
+
+nav{
+    background-color: #539987!important;
+}
+
+header, main, footer {
+    padding-left: 300px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
