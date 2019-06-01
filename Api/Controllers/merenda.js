@@ -60,4 +60,24 @@ router.put('/:data', (request, response) => {
         response.status(400).send('Campos invalidos!');
 });
 
+// RETORNA A MERENDA DA SEMANA
+/*
+/api/merenda/{data} : GET - retorna a merenda da data informada
+
+200 (OK) detalhes da data informada.
+*/
+
+router.get('/:data', (request, response) => {
+    bancoDeDados.conexao.query(`select c.Observacoes, a.IdAlimento 
+    from Cardapio as c, Cardapio_Alimento as a
+    WHERE c.Data = '${request.params.data}'`,
+        (erro, resultado) => {
+            if (resultado.length > 0)
+                response.status(200).json({ Resposta: resposta });
+            else
+                response.status(400).json({ Erro: erro });
+            if(erro)
+                response.status(400).json({ Error: erro });
+        });
+});
 module.exports = (api) => api.use('/api/merenda', router);
