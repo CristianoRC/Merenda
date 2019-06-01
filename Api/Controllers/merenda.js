@@ -5,79 +5,98 @@ const bancoDeDados = require('./bancoDeDados');
 
 
 
+// INSERE OS DADOS NOS CARDAPIOS
 router.post('/', (request, response) => {
-    if (request.body.data && request.body.observacao) {
+    if (request.body.data && request.body.observacao && request.body.alimentos) {
+
+        let data = request.body.data;
         bancoDeDados.conexao.query(`insert into Cardapio (Data, Observacoes) 
-        values('${request.body.data}', '${request.body.observacao}')`,
+        values('${data}', '${request.body.observacao}')`,
             (erro, resultado) => {
-                if (!erro)
-                    response.status(200).json({ resultado: 'Cardapio foi cadastrado com sucesso' }).send();
-                else if (erro)
-                    response.status(400).json({ erro: erro });
-                if (request.body.idAlimento) {
-                    bancoDeDados.conexao.query(`insert into Cardapio_Alimento (Data, IdAlimento)
-                    values('${request.body.data}',  '${request.body.idAlimento}')`,
-                        (error, result) => {
-                            if (error)
-                                response.status(400).json({ error: error });
-                            else if (!error)
-                                response.status(200).send('Cardapio foi cadastro com sucesso"');
-
-                        });
-                }
-                else
-                    response.status(400).send('Campo envalido');
-            });
-    }
-
-});
-
-
-// ATUALIZA OS DADOS DO CARDAPIO
-
-router.put('/:data', (request, response) => {
-
-    if (request.body.data && request.body.observacao) {
-        bancoDeDados.conexao.query(`update Cardapio set Data = '${request.body.data}', 
-         Observacoes = '${request.body.observacao}'
-         where Data = '${request.params.data}'`, (erro, resposta) => {
+                let sql = "insert into Cardapio_Alimento (Data, IdAlimento) values ";
                 if (erro)
                     response.status(400).json({ erro: erro });
-                else if (!erro)
-                    if (request.body.idAlimento) {
-                        bancoDeDados.conexao.query(`update Cardapio_Alimento set Data = '${request.body.data}', 
-                        IdAlimento = '${request.body.idAlimento}'`, (error, result) => {
-                                if (error)
-                                    response.status(400).json({ Erro: error });
-                                else
-                                    response.status(200).send('Foram inseridos com sucesso');
+                for (let alimento of request.body.alimentos) {
+                    sql += `('${data}', ${alimento}),`
 
-                            });
-                    }
+                }
+                sql = sql.substr(0, (sql.length - 1));
+                bancoDeDados.conexao.query(sql, (error, result) => {
+                    if (resultado.affectedRows > 0 && result.affectedRows > 0)
+                        response.status(200).json({ Resultado: resultado, Result: result });
+                    else
+                        response.status(400).json({ Error: error }).send();
+                });
+
+
+
             });
     }
     else
-        response.status(400).send('Campos invalidos!');
+        response.status(404).send();
+
+
 });
 
-// RETORNA A MERENDA DA SEMANA
-/*
-/api/merenda/{data} : GET - retorna a merenda da data informada
 
-200 (OK) detalhes da data informada.
-*/
+// ATUALIZA OS DADOS DO CARDAPIOS
 
+router.put('/:data', (request, response) => {
+
+
+    if (request.body.observacao) {
+        bancoDeDados.conexao.query(`update Cardapio set Observacoes = '${request.body.observacao}'
+         where Data = '${request.params.data}'`, (erro, resultado) => {
+                let mysql = "insert into Cardapio_Alimento (Data, IdAlimento) values ";
+                data = request.params.data;
+                if (erro)
+                    response.status(400).json({ erro: erro });
+                else
+                    bancoDeDados.conexao.query(`Delete from Cardapio_Alimento where Data = '${request.params.data}'`, (error, result) => {
+                        if (!error)
+                           
+                        for (let novosalimentos of request.body.novosalimentos) {
+                            mysql += `('${data}', ${novosalimentos}),`
+                        }
+                        mysql = mysql.substr(0, (mysql.length - 1));
+                        bancoDeDados.conexao.query(mysql, (errinho, resultadinho) => {
+                            if (resultadinho.affectedRows > 0 && resultado.affectedRows > 0)
+                                response.status(200).json({ Resultado: resultadinho }).send();
+                            else
+                                response.status(400).json({ Erro: errinho });
+
+                        });
+
+
+
+                    });
+
+
+
+            });
+    }
+    else
+        response.status(404).send('Campos invalidos!');
+});
+
+
+// RETORNA A MERENDA DA DATA INFORMADA
 router.get('/:data', (request, response) => {
-    bancoDeDados.conexao.query(`select c.Observacoes, a.IdAlimento 
-    from Cardapio as c, Cardapio_Alimento as a
-    WHERE c.Data = '${request.params.data}'`,
+    bancoDeDados.conexao.query(`select a.IdAlimento, c.Observacoes 
+    from  Cardapio_Alimento as a
+    inner join Cardapio as c on a.Data = c.Data
+    WHERE a.Data = '${request.params.data}'`,
         (erro, resultado) => {
             if (resultado.length > 0)
-                response.status(200).json({ Resposta: resposta });
+                response.status(200).json({ Resultado: resultado });
             else
                 response.status(400).json({ Erro: erro });
-            if(erro)
+            if (erro)
                 response.status(400).json({ Error: erro });
         });
 });
+
+
+
+
 module.exports = (api) => api.use('/api/merenda', router);
