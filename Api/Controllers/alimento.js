@@ -34,7 +34,8 @@ router.delete('/:Id', (request, response) => {
 router.post('/', (request, response) => {
     // Se o user preencher os campos vai entrar no IF
     if (request.body.nome && request.body.descricao && request.body.categoria >= 0) {
-        bancoDeDados.conexao.query(`insert into Alimento (Nome, Descricao, Categoria) values('${request.body.nome}', '${request.body.descricao}', '${request.body.categoria}')`,
+        bancoDeDados.conexao.query(`insert into Alimento (Nome, Descricao, Categoria) 
+        values('${request.body.nome}', '${request.body.descricao}', '${request.body.categoria}')`,
             (erro, resultado) => {
                 if (!erro) // Se não tiver erro
                     response.status(200);
