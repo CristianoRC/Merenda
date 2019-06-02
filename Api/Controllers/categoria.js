@@ -14,9 +14,6 @@ router.get('/', (request, response) => {
         else {
             response.status(400).json({ erro: erro });
         }
-
-        response.send();
-
     });
 });
 

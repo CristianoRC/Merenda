@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Merenda - Alimento</title>
+    <link rel="icon" type="image/png" href="../images/food.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center">Merenda</a>
+        </div>
+    </nav>
+
+    <section id="MenuLateral">
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li>
+                <div class="user-view center-align">
+                    <img src="../images/food.png">
+                </div>
+            </li>
+            <li><a href="https://github.com/cristianorc/merenda" target="_blank"><i
+                        class="material-icons">dns</i>Repositorio</a></li>
+            <li><a href="https://github.com/cristianorc/merenda" target="_blank"><i
+                        class="material-icons">face</i>Cliente</a></li>
+
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Categoria</a></li>
+            <li><a class="waves-effect" href="../categoria/cadastroCategoria.html"><i
+                        class="material-icons">add</i>Cadastrar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
+
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Alimento</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">add</i>Cadastrar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
+
+            <li><a class="subheader">Cardápio</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">add</i>Cadastrar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
+
+        </ul>
+    </section>
+
+    <div class="container center-align" style="margin-top: 5vh">
+        <div class="row">
+            <h5>Cadastro de alimento</h5>
+        </div>
+        <div class="row">
+            <div class="col offset-s2 s10">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Ex. Arroz" id="nome" type="text" class="validate">
+                        <label for="nome">Nome</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="categorias"></select>
+                        <label>Categoria do Alimento</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="descricao" class="materialize-textarea"></textarea>
+                        <label for="descricao">Descrição</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s2 offset-s10">
+                        <button class="btn waves-effect waves-light" onclick="cadastrar()">Cadastrar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./alimento.js"></script>
+
+    <script>
+        function cadastrar() {
+            if (!$("#nome").val() || !$("#categorias").val() || !$("#descricao").val()) {
+                M.toast({ html: 'Não foi possível salvar, verifique os campos' });
+            }
+            else {
+
+                let dados = {
+                    nome: $("#nome").val(),
+                    categoria: parseInt($("#categorias").val()),
+                    descricao: $("#descricao").val()
+                };
+
+                cadastrarAlimento(dados, (status) => {
+                    if (status == 'success') {
+                        M.toast({ html: 'Alimento cadastrado com sucesso' });
+                        $("#nome").val('');
+                        $("#descricao").val('');
+                    }
+                    else {
+                        M.toast({ html: 'Não foi possível cadastrar o alimento' });
+                    }
+                });
+            }
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {});
+        });
+
+        let categorias = obterTodasCategorias((dados) => {
+            for (const categoria of dados) {
+                $("#categorias").append(new Option(categoria.Titulo, categoria.Id));
+            }
+
+            var elemsSelect = document.querySelectorAll('select');
+            var instancesSelect = M.FormSelect.init(elemsSelect, {});
+        });
+    </script>
+</body>
+
+</html>
