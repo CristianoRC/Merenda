@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Merenda - Cardapio</title>
+    <link rel="icon" type="image/png" href="../images/food.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/cardapio.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center">Merenda | Cardápio</a>
+        </div>
+    </nav>
+
+    <section id="MenuLateral">
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li>
+                <div class="user-view center-align">
+                    <img src="../images/food.png">
+                </div>
+            </li>
+            <li><a href="https://github.com/cristianorc/merenda" target="_blank"><i
+                        class="material-icons">dns</i>Repositorio</a></li>
+            <li><a href="https://github.com/cristianorc/merenda" target="_blank"><i
+                        class="material-icons">face</i>Cliente</a></li>
+
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Categoria</a></li>
+            <li><a class="waves-effect" href="../categoria/cadastroCategoria.html"><i
+                        class="material-icons">add</i>Cadastrar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
+
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Alimento</a></li>
+            <li><a class="waves-effect" href="../alimento/cadastroAlimento.html"><i
+                        class="material-icons">add</i>Cadastrar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
+
+            <li><a class="subheader">Cardápio</a></li>
+            <li><a class="waves-effect" href="cadastroCardapio.html"><i class="material-icons">add</i>Cadastrar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
+
+        </ul>
+    </section>
+
+   
+
+
+    <div  class="row right ">
+        <div  class="col s3 m8 l8">
+            <div  class="card medium"  id="cards" >
+                <div class="card-content white-text">
+                    <span class="card-title">Sexta-Feira</span>
+                    <p>Aqui aparece o cardio de Sexta-Feira</p>
+                </div>
+                <div class="card-action">
+                    <i class="material-icons">edit</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row right ">
+        <div class="col s3 m8 l8">
+            <div class="card medium" id="cards">
+                <div class="card-content white-text">
+                    <span class="card-title">Quinta-Feira</span>
+                    <p>Aqui aparece o cardio de Quinta-Feira</p>
+                </div>
+                <div class="card-action">
+                    <i class="material-icons">edit</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row right">
+        <div class="col s3 m8 l8">
+            <div class="card medium"  id="cards">
+                <div class="card-content white-text">
+                    <span class="card-title">Quarta-Feira</span>
+                    <p>Aqui aparece o cardio de Quarta-Feira</p>
+                </div>
+                <div class="card-action">
+                    <i class="material-icons">edit</i>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="row right">
+        <div class="col s3 m8">
+            <div class="card medium" id="cards">
+                <div class="card-content white-text">
+                    <span class="card-title">Terça-Feira</span>
+                    <p>Aqui aparece o cardio de Quinta-Feira</p>
+                </div>
+                <div class="card-action">
+                    <i class="material-icons">edit</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row right">
+        <div class="col s3 m8">
+            <div class="card medium"  id="cards">
+                <div class="card-content  white-text">
+                    <span class="card-title ">Segunda-Feira</span>
+                    <p>Aqui aparece o cardápio de Segunda</p>
+                </div>
+                <div class="card-action">
+                    <i class="material-icons">edit</i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {});
+        });
+    </script>
+</body>
+
+</html>

@@ -5,7 +5,7 @@ const bancoDeDados = require('./bancoDeDados');
 
 
 
-// INSERE OS DADOS NOS CARDAPIOS
+// CADASTRA OS DADOS NOS CARDAPIOS
 router.post('/', (request, response) => {
     if (request.body.data && request.body.observacao && request.body.alimentos) {
 
