@@ -1,11 +1,13 @@
-#cards {
-    background-color:#539987;
-    width: 200px;
-    margin: 100px -1px 3px -10px;
-    display: inline-block;
-}
-#cards div div{
-    height: 1430px;
-}
 
 
+.container {
+    padding: 8vh;
+}
+#cardapio_semanal  {
+   background-color: #539987 ;
+    color: whitesmoke;
+}
+#cardapio_semanal i{
+    color: white;
+
+}

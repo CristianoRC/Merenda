@@ -59,84 +59,54 @@
         </ul>
     </section>
 
-   
-
-
-    <div  class="row right ">
-        <div  class="col s3 m8 l8">
-            <div  class="card medium"  id="cards" >
-                <div class="card-content white-text">
-                    <span class="card-title">Sexta-Feira</span>
-                    <p>Aqui aparece o cardio de Sexta-Feira</p>
-                </div>
-                <div class="card-action">
-                    <i class="material-icons">edit</i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row right ">
-        <div class="col s3 m8 l8">
-            <div class="card medium" id="cards">
-                <div class="card-content white-text">
-                    <span class="card-title">Quinta-Feira</span>
-                    <p>Aqui aparece o cardio de Quinta-Feira</p>
-                </div>
-                <div class="card-action">
-                    <i class="material-icons">edit</i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row right">
-        <div class="col s3 m8 l8">
-            <div class="card medium"  id="cards">
-                <div class="card-content white-text">
-                    <span class="card-title">Quarta-Feira</span>
-                    <p>Aqui aparece o cardio de Quarta-Feira</p>
-                </div>
-                <div class="card-action">
-                    <i class="material-icons">edit</i>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-    <div class="row right">
-        <div class="col s3 m8">
-            <div class="card medium" id="cards">
-                <div class="card-content white-text">
-                    <span class="card-title">Terça-Feira</span>
-                    <p>Aqui aparece o cardio de Quinta-Feira</p>
-                </div>
-                <div class="card-action">
-                    <i class="material-icons">edit</i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row right">
-        <div class="col s3 m8">
-            <div class="card medium"  id="cards">
-                <div class="card-content  white-text">
-                    <span class="card-title ">Segunda-Feira</span>
-                    <p>Aqui aparece o cardápio de Segunda</p>
-                </div>
-                <div class="card-action">
-                    <i class="material-icons">edit</i>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-s2 s10">
+                <table class="responsive-table z-depth-3"  id="cardapio_semanal">
+                    <thead>
+                        <tr>
+                            <th>Segunda<a href="#!"> <i class="material-icons left">edit</i> </a></th>
+                            <th>Terça<a href="#!"> <i class="material-icons left">edit</i> </a></th>
+                            <th>Quarta<a href="#!"> <i class="material-icons left">edit</i> </a></th>
+                            <th>Quinta<a href="#!"> <i class="material-icons left">edit</i> </a></th>
+                            <th>Sexta<a href="#!"> <i class="material-icons left">edit</i> </a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>s</td>
+                            <td>t</td>
+                            <td>qr</td>
+                            <td>qui</td>
+                            <td>sex</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
+
+    <script src="./cardapio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems, {});
         });
+
+
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems, {});
+        });
+
+    </script>
+
 </body>
 
 </html>
