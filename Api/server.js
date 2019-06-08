@@ -11,7 +11,7 @@ api.use(bodyParser.json());
 
 require('./Controllers/alimento')(api);
 require('./Controllers/categoria')(api);
-require('./Controllers/merenda')(api);
+// require('./Controllers/merenda')(api);
 
 // =========================================================================//
 
