@@ -37,7 +37,7 @@
             <li><a class="subheader">Categoria</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">add</i>Cadastrar</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
-            <li><a class="waves-effect" href="./deletaCategoria.html"><i class="material-icons">delete</i>Excluir</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
 
             <li>
                 <div class="divider"></div>
@@ -63,18 +63,14 @@
         </div>
         <div class="row">
             <div class="col offset-s2 s10">
-                <div class="input-field col s6">
-                    <input placeholder="Ex. Fruta" id="nome" type="text" class="validate">
-                    <label for="nome">Nome</label>
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="Sua descrição aqui" id="descricao" type="text" class="validate">
-                    <label for="descricao">Descrição</label>
+                <div class="input-field col s12">
+                    <select id="categorias"></select>
+                    <label>Categoria do Alimento</label>
                 </div>
 
                 <div class="row">
                     <div class="col s2 offset-s10">
-                        <button class="btn waves-effect waves-light" onclick="cadastrar()">Cadastrar
+                        <button class="btn waves-effect waves-light" onclick="deletar()">Deletar
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
@@ -84,11 +80,13 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./categoria.js"></script>
 
     <script>
-        function cadastrar() {
-            cadastrarCategoria();
+        function deletar() {
+            let idCategoria = $("#categorias").val();
+            deletarCategoria(idCategoria, () => { atualizarCategorias() });
         }
     </script>
 
@@ -96,7 +94,23 @@
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems, {});
+            atualizarCategorias();
         });
+
+        function atualizarCategorias() {
+            let categorias = obterTodasCategorias((dados) => {
+                $("#categorias")
+                    .find('option')
+                    .remove();
+
+                for (const categoria of dados) {
+                    $("#categorias").append(new Option(categoria.Titulo, categoria.Id));
+                }
+
+                var elemsSelect = document.querySelectorAll('select');
+                var instancesSelect = M.FormSelect.init(elemsSelect, {});
+            });
+        }
     </script>
 
 </body>
