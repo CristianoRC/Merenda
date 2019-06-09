@@ -17,7 +17,7 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo center">Merenda | Cardápio</a>
+            <a href="#!" class="brand-logo center">Merenda</a>
         </div>
     </nav>
 
@@ -40,7 +40,8 @@
             <li><a class="waves-effect" href="../categoria/cadastroCategoria.html"><i
                         class="material-icons">add</i>Cadastrar</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
-            <li><a class="waves-effect" href="../categoria/deletaCategoria.html"><i class="material-icons">delete</i>Excluir</a></li>
+            <li><a class="waves-effect" href="../categoria/deletaCategoria.html"><i
+                        class="material-icons">delete</i>Excluir</a></li>
 
             <li>
                 <div class="divider"></div>
@@ -50,7 +51,9 @@
                         class="material-icons">add</i>Cadastrar</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
-
+            <li>
+                <div class="divider"></div>
+            </li>
             <li><a class="subheader">Cardápio</a></li>
             <li><a class="waves-effect" href="cadastroCardapio.html"><i class="material-icons">add</i>Cadastrar</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
@@ -59,37 +62,68 @@
         </ul>
     </section>
 
-    <div class="container">
+    <div class="container" style="margin-top: 5vh">
+        <div class="row center-align">
+            <h5>Cadastro de categoria</h5>
+        </div>
         <div class="row">
-            <div class="col offset-s2 s10">
-                <table class="responsive-table z-depth-3"  id="cardapio_semanal">
-                    <thead>
-                        <tr>
-                            <th>Segunda<a href="#!"> <i class="material-icons left">edit</i> </a></th>
-                            <th>Terça<a href="#!"> <i class="material-icons left">edit</i> </a></th>
-                            <th>Quarta<a href="#!"> <i class="material-icons left">edit</i> </a></th>
-                            <th>Quinta<a href="#!"> <i class="material-icons left">edit</i> </a></th>
-                            <th>Sexta<a href="#!"> <i class="material-icons left">edit</i> </a></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>s</td>
-                            <td>t</td>
-                            <td>qr</td>
-                            <td>qui</td>
-                            <td>sex</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col offset-s3 s10">
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="segunda" class="validate" type="text" required>
+                        <label for="segunda">Segunda</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="terca" class="validade" type="text" required>
+                        <label for="terca">Terça</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="quarta" class="validate" type="text" required>
+                        <label for="quarta">Quarta</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="quinta" class="validate" type="text" required>
+                        <label for="quinta">Quinta</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="sexta" class="validate" type="text" required>
+                        <label for="sexta">Sexta</label>
+                    </div>
+                    <a class="btn-floating waves-effect waves-yellows" onclick='cadastrar()' href="#!"><i class="material-icons">done</i></a>
+                </div>
+
+                <div class="row">
+                    <div class="col s10">
+                        <table class="responsive-table z-depth-2" id="tabela">
+                            <thead>
+                                <th>Segunda</th>
+                                <th>Terça</th>
+                                <th>Quarta</th>
+                                <th>Quinta</th>
+                                <th>Sexta</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-
     <script src="./cardapio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+
+    <script>
+      
+
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -98,14 +132,15 @@
         });
 
 
-    </script>
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.collapsible');
-            var instances = M.Collapsible.init(elems, {});
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, {});
         });
 
+
+
     </script>
+
 
 </body>
 

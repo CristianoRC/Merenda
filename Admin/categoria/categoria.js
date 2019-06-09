@@ -1,7 +1,7 @@
 const apiUrl = 'http://localhost:3000/api'
 
 function cadastrarCategoria(nome, descricao) {
-    alert("Fazer a comunicação com api quando o enpoint estiver pronto!");
+    alert("Fazer a comunicação com api quando o endpoint estiver pronto!");
 }
 
 function deletarCategoria(id, callback) {

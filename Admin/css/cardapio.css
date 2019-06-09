@@ -1,13 +1,8 @@
 
-
-.container {
-    padding: 8vh;
+#cards {
+    padding: 14vh;
 }
-#cardapio_semanal  {
-   background-color: #539987 ;
-    color: whitesmoke;
-}
-#cardapio_semanal i{
+#tabela {
+    background-color: #539987;
     color: white;
-
 }
