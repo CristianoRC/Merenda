@@ -55,64 +55,45 @@
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Cardápio</a></li>
-            <li><a class="waves-effect" href="../cardapio/cadastroCardapio.html"><i class="material-icons">add</i>Cadastrar</a></li>
-            <li><a class="waves-effect" href="../cardapio/updateCardapio.html"><i class="material-icons">edit</i>Editar</a></li>
+            <li><a class="waves-effect" href="cadastroCardapio.html"><i class="material-icons">add</i>Cadastrar</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
 
         </ul>
     </section>
 
-    <div class="container" style="margin-top: 5vh">
-        <div class="row center-align">
-            <h5>Cadastro de Cardapio</h5>
+    <div class="container">
+        <div class="row center-align" style="margin-top: 8vh">
+            <h5>Editar Cardápio</h5>
         </div>
         <div class="row">
-            <div class="col offset-s3 s10">
+            <div class=" col offset-s2 s10 ">
                 <div class="row">
-                    <div class="input-field col s4">
+                    <div id="cardSegunda" class="card col s5 green">
+                        <span class="card-title white-text">Segunda</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-yellow" onclick="editaSegunda()"
+                            href="#!">
+                            <i id="icon" class="material-icons">edit</i></a>
+                        <div id="conteudo" class="card-content white-text">
+
+                        </div>
+                    </div>
+                    <div id="showSegunda" class="input-field col s4" style="display: none">
                         <input id="segunda" class="validate" type="text" required>
                         <label for="segunda">Segunda</label>
-                    </div>
-                    <div class="input-field col s4">
-                        <input id="terca" class="validade" type="text" required>
-                        <label for="terca">Terça</label>
-                    </div>
-                    <div class="input-field col s4">
-                        <input id="quarta" class="validate" type="text" required>
-                        <label for="quarta">Quarta</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s4">
-                        <input id="quinta" class="validate" type="text" required>
-                        <label for="quinta">Quinta</label>
-                    </div>
-                    <div class="input-field col s4">
-                        <input id="sexta" class="validate" type="text" required>
-                        <label for="sexta">Sexta</label>
-                    </div>
-                    <a class="btn-floating waves-effect waves-yellows" onclick='cadastrar()' href="#!"><i class="material-icons">done</i></a>
-                </div>
 
-                <div class="row">
-                    <div class="col s10">
-                        <table class="responsive-table z-depth-2" id="tabela">
-                            <thead>
-                                <th>Segunda</th>
-                                <th>Terça</th>
-                                <th>Quarta</th>
-                                <th>Quinta</th>
-                                <th>Sexta</th>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
 
     <script src="./cardapio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -121,7 +102,42 @@
 
 
     <script>
-      
+        var Semana = ({
+            segunda: '',
+            terca: '',
+            quarta: '',
+            quinta: '',
+            sexta: ''
+        });
+
+        var isHide = true;
+        trocaCard = document.getElementById('conteudo').innerHTML = `<p> Aqui vai os dados do Bancos </p>`;
+
+        function editaSegunda(Semana) {
+
+            if (isHide == true) {
+                this.segunda = document.querySelector('#segunda').value = "";
+                var alteraInput = document.getElementById('showSegunda').style.display = "inherit";
+                var changeBotao = document.getElementById('icon').innerHTML = "done";
+                isHide = false;
+
+            }
+            else {
+                changeBotao = document.getElementById('icon').innerHTML = "edit";
+                alteraInput = document.getElementById('showSegunda').style.display = "none";
+                this.segunda = document.querySelector('#segunda').value;
+                trocaCard = document.getElementById('conteudo').innerHTML = `<p> ${this.segunda} </p>`;
+
+                if (document.querySelector('#segunda').value == "")
+                    var erro = document.getElementById('conteudo').innerHTML = "Preencha os dados";
+                else
+                    this.segunda = document.querySelector('#segunda').value;
+                isHide = true;
+
+            }
+        }
+
+
 
     </script>
 
