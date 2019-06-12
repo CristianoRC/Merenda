@@ -103,7 +103,7 @@
 
     <script>
         var Semana = ({
-            segunda: '',
+            segunda: { isHide: false, value: '' },
             terca: '',
             quarta: '',
             quinta: '',
@@ -112,11 +112,11 @@
 
         var isHide = true;
         trocaCard = document.getElementById('conteudo').innerHTML = `<p> Aqui vai os dados do Bancos </p>`;
-
+        this.segunda = document.querySelector('#segunda').value = "";
         function editaSegunda(Semana) {
 
             if (isHide == true) {
-                this.segunda = document.querySelector('#segunda').value = "";
+
                 var alteraInput = document.getElementById('showSegunda').style.display = "inherit";
                 var changeBotao = document.getElementById('icon').innerHTML = "done";
                 isHide = false;
