@@ -37,7 +37,8 @@
             <li><a class="subheader">Categoria</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">add</i>Cadastrar</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">edit</i>Editar</a></li>
-            <li><a class="waves-effect" href="./deletaCategoria.html"><i class="material-icons">delete</i>Excluir</a></li>
+            <li><a class="waves-effect" href="./deletaCategoria.html"><i class="material-icons">delete</i>Excluir</a>
+            </li>
 
             <li>
                 <div class="divider"></div>
@@ -51,7 +52,8 @@
             <li><a class="subheader">Cardápio</a></li>
             <li><a class="waves-effect" href="../cardapio/cadastroCardapio.html"><i
                         class="material-icons">add</i>Cadastrar</a></li>
-            <li><a class="waves-effect" href="../cardapio/updateCardapio.html"><i class="material-icons">edit</i>Editar</a></li>
+            <li><a class="waves-effect" href="../cardapio/updateCardapio.html"><i
+                        class="material-icons">edit</i>Editar</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">delete</i>Excluir</a></li>
 
         </ul>
@@ -64,7 +66,7 @@
         <div class="row">
             <div class="col offset-s2 s10">
                 <div class="input-field col s6">
-                    <input placeholder="Ex. Fruta" id="nome" type="text" class="validate">
+                    <input placeholder="Ex. Fruta" id="titulo" type="text" class="validate">
                     <label for="nome">Nome</label>
                 </div>
                 <div class="input-field col s6">
@@ -84,11 +86,31 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="./categoria.js"></script>
 
     <script>
         function cadastrar() {
-            cadastrarCategoria();
+            if (!$("#titulo").val() || !$("#descricao").val()) {
+                M.toast({ html: 'Não foi possivel salvar, verifique os campos' });
+            }
+            else {
+                let dados = {
+                    titulo: $("#titulo").val(),
+                    descricao: $("#descricao").val()
+                };
+                cadastrarCategoria(dados, (status) => {
+                    if (status == 'success') {
+                        M.toast({ html: 'Categoria cadastrada com sucesso' });
+                        $("#titulo").val('');
+                        $("#descricao").val('');
+                    }
+                    else {
+                        M.toast({ html: 'Não foi possivel cadastrar a categoria' });
+                    }
+                });
+            }
         }
     </script>
 

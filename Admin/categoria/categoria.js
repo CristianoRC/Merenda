@@ -1,6 +1,11 @@
-function cadastrarCategoria(nome, descricao) {
-    alert("Fazer a comunicação com api quando o endpoint estiver pronto!");
+
+
+function cadastrarCategoria(dados, callback) {
+    $.post('http://localhost:3000/api/categoria/', dados, (resultado, status) => {
+    callback(status);
+    }), "json" 
 }
+ 
 
 function deletarCategoria(id, callback) {
     $.ajax({
