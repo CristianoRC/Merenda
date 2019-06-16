@@ -4,6 +4,28 @@ const router = express.Router();
 const bancoDeDados = require('./bancoDeDados');
 
 
+// CADASTRA UM NOVO ALIMENTO
+router.post('/', (request, response) => {
+    let titulo = request.body.titulo;
+    let text = request.body.text;
+    if (titulo && text) {
+    bancoDeDados.conexao.query(`select * from Categoria where Titulo = '${titulo}' and Deletado = 0`, (naoExiste, existe) => {
+        if (existe.length > 0)
+            response.status(400).send('A categoria informada já existe!');
+        else {
+            bancoDeDados.conexao.query(`insert into Categoria (Titulo, Text) values ('${titulo}', '${text}')`, (erro, resposta) => {
+                if (!erro)
+                    response.status(200).json({ Resposta: resposta });
+                else
+                    response.status(400).json({ Erro: erro }).send();
+            });
+        }
+    });
+} else
+response.status(404).send( 'Erro na validação dos campos!');
+
+});
+
 // RETORNA TODAS AS CATEGORIAS
 router.get('/', (request, response) => {
 
