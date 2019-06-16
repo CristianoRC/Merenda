@@ -9,7 +9,7 @@ router.post('/', (request, response) => {
     let titulo = request.body.titulo;
     let text = request.body.text;
     if (titulo && text) {
-    bancoDeDados.conexao.query(`select * from Categoria where Titulo = '${titulo}' and Deletado = 0`, (naoExiste, existe) => {
+    bancoDeDados.conexao.query(`select * from Categoria where Titulo = '${titulo}' and Deletado = false`, (naoExiste, existe) => {
         if (existe.length > 0)
             response.status(400).send('A categoria informada já existe!');
         else {
