@@ -11,7 +11,7 @@ router.post('/', (request, response) => {
         sql = sql.substr(0, (sql.length - 1));
         sql = sql + ')';
         bancoDeDados.conexao.query(sql, (erro, resultado) => {
-            if (resultado.length > 2) {
+            if (resultado.length >= 1) {
                 bancoDeDados.conexao.query(`insert into Cardapio (Data, Observacoes)
                     values('${request.body.data}', '${request.body.observacoes}')`, (erro, resultado) => {
                         if (!erro)
