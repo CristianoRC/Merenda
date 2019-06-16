@@ -11,7 +11,7 @@ router.post('/', (request, response) => {
     if (titulo && text) {
     bancoDeDados.conexao.query(`select * from Categoria where Titulo = '${titulo}' and Deletado = false`, (naoExiste, existe) => {
         if (existe.length > 0)
-            response.status(400).send('A categoria informada já existe!');
+            response.status(400).json({ existe: 'A categoria informada já existe!' }).send();
         else {
             bancoDeDados.conexao.query(`insert into Categoria (Titulo, Text) values ('${titulo}', '${text}')`, (erro, resposta) => {
                 if (!erro)
