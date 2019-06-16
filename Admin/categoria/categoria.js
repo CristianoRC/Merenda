@@ -3,7 +3,7 @@
 function cadastrarCategoria(dados, callback) {
     $.post('http://localhost:3000/api/categoria/', dados, (resultado, status) => {
     callback(status);
-    }), 'json'  
+    }), "json" 
 }
  
 

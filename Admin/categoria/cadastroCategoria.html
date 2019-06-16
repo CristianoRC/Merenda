@@ -93,15 +93,15 @@
     <script>
         function cadastrar() {
             if (!$("#titulo").val() || !$("#descricao").val()) {
-                M.toast({ html: 'Não foi possivel salvar, verifique os campos' })
+                M.toast({ html: 'Não foi possivel salvar, verifique os campos' });
             }
             else {
                 let dados = {
                     titulo: $("#titulo").val(),
-                    descricao: $('#descricao').val()
+                    descricao: $("#descricao").val()
                 };
                 cadastrarCategoria(dados, (status) => {
-                    if (status == 'sucess') {
+                    if (status == 'success') {
                         M.toast({ html: 'Categoria cadastrada com sucesso' });
                         $("#titulo").val('');
                         $("#descricao").val('');
