@@ -1,12 +1,10 @@
-const apiUrl = 'http://localhost:3000/api'
-
 function cadastrarCategoria(nome, descricao) {
     alert("Fazer a comunicação com api quando o endpoint estiver pronto!");
 }
 
 function deletarCategoria(id, callback) {
     $.ajax({
-        url: `${apiUrl}/categoria/${id}`,
+        url: `http://localhost:3000/api/categoria/${id}`,
         type: 'DELETE',
         success: function (result) {
             if (result == "O id foi encontrado e Deletado com sucesso!") {
