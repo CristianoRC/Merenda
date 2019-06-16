@@ -4,6 +4,13 @@ nav{
     background-color: #539987!important;
 }
 
+h5{
+  font-weight: 900;
+}
+.card-panel{
+    background-image: linear-gradient(to right bottom, #539987, #58a08e, #5ca894, #61af9b, #66b7a2);
+}
+
 /* body{
   background-image: url('../images/food.svg');
   background-repeat: no-repeat;

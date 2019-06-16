@@ -21,19 +21,19 @@
 
     <main>
         <div class="carousel">
-            <a class="carousel-item" onclick="atualizarDados(0)" href="#one!">
+            <a class="carousel-item" onclick="atualizarCardMerenda(0)" href="#one!">
                 <img src="./images/Segunda.png" alt="Segunda-Feira">
             </a>
-            <a class="carousel-item" onclick="atualizarDados(1)" href="#two!">
+            <a class="carousel-item" onclick="atualizarCardMerenda(1)" href="#two!">
                 <img src="./images/Terca.png" alt="Terca-Feira">
             </a>
-            <a class="carousel-item" onclick="atualizarDados(2)" href="#three!">
+            <a class="carousel-item" onclick="atualizarCardMerenda(2)" href="#three!">
                 <img src="./images/Quarta.png" alt="Quarta-Feira">
             </a>
-            <a class="carousel-item" onclick="atualizarDados(3)" href="#four!">
+            <a class="carousel-item" onclick="atualizarCardMerenda(3)" href="#four!">
                 <img src="./images/Quinta.png" alt="Quinta-Feira">
             </a>
-            <a class="carousel-item" onclick="atualizarDados(4)" href="#five!">
+            <a class="carousel-item" onclick="atualizarCardMerenda(4)" href="#five!">
                 <img src="./images/Sexta.png" alt="Sexta-feita">
             </a>
         </div>
@@ -51,7 +51,12 @@
 
 
 
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"> </script> <script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"> </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        var dadosMerenda = [];
+
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems, {});
@@ -59,15 +64,99 @@
             var elemsCarousel = document.querySelectorAll('.carousel');
             var instancesCarousel = M.Carousel.init(elemsCarousel, { shift: 60 });
 
-            ExibirMerendas();
+            carregarDados();
         });
 
-        function ExibirMerendas(params) {
-            
+        function carregarDados() {
+            $.get('http://localhost:3000/api/merenda', (dados) => {
+                if (dados.Cardapios) {
+                    dados.Cardapios.map(cardapio => { dadosMerenda.push({ cardapio: cardapio, merendas: [] }) });
+                    dadosMerenda.map(d => { d.merendas = dados.Merendas.filter(x => x.Data === d.cardapio.Data) });
+                    atualizarCardMerenda(0);
+                }
+                else {
+                    $("#diaDaSemana").addClass('center-align');
+
+                    $("#diaDaSemana").html(`
+                    <img  src="./images/food.svg" height="100vh"></img>
+                    <h4 >Ainda não temos merendas registradas para essa semana</h4>`);
+                }
+
+            });
+
         }
 
-        function atualizarDados(index) {
-            document.getElementById('diaDaSemana').innerHTML = index;
+        function atualizarCardMerenda(index) {
+            if (!dadosMerenda.length == 0) {
+                let hoje = dadosMerenda[index];
+
+                let alimentosHtml = "";
+
+                if (hoje.merendas.length > 0)
+                    hoje.merendas.map(alimento => {
+                        alimentosHtml += `<tr>
+                                        <td>${alimento.Nome}</td>
+                                        <td>${alimento.Descricao}</td>
+                                        <td>${alimento.Categoria}</td>
+                                    </tr>`
+                    });
+
+
+                $("#diaDaSemana").html(`
+                <div class="card-panel z-depth-3">
+                    <div class="white-text">
+                        <div class="row">
+                            <div clas="col s12"> 
+                                <h5>
+                                    ${obterDiaDaSemanaPorExtenso(index)} - 
+                                    ${obterDataFormatada(hoje.cardapio.Data)}
+                                </h5>
+                            </div
+                            <div clas="col s12"> 
+                               Observações do dia: ${hoje.cardapio.Observacoes}
+                            </div>
+                      
+                        <h5>Alimentos</h5>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            ${alimentosHtml}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                `);
+            }
+
+        }
+
+        function obterDiaDaSemanaPorExtenso(diaDaSemana) {
+            switch (diaDaSemana) {
+                case 0:
+                    return "Segunda-Feira";
+                case 1:
+                    return "Terça-Feira";
+                case 2:
+                    return "Quarta-Feira";
+                case 3:
+                    return "Quinta-Feira";
+                case 4:
+                    return "Sexta-Feira";
+                default:
+                    return "Dia inválido"
+            }
+        }
+        function obterDataFormatada(data) {
+            let hoje = new Date(data);
+            return `${hoje.getDate()}/${hoje.getUTCMonth()}`
         }
     </script>
 </body>

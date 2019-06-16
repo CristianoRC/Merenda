@@ -43,7 +43,7 @@ router.post('/', (request, response) => {
 router.get('/', (request, response) => {
 
     // July 30, 2019 01:15:00
-    let hoje = new Date();
+    let hoje = new Date('July 30, 2019 01:15:00');
 
     if (hoje.getDay() === 0 || hoje.getDay() === 6) //Domingo ou sábado
         response.status(200).json({ Cardapios: [], Merendas: [] })
@@ -52,15 +52,16 @@ router.get('/', (request, response) => {
     let diasParaSegunda = (hoje.getDay() - 1) * -1;//1 representa o dia segunda-feira
     let diasParaSexta = (hoje.getDay() - 5) * -1;//5 representa o dia sexta feita
 
-    let segundaFeira = new Date().adicionarDias(diasParaSegunda);
-    let sextaFeira = new Date().adicionarDias(diasParaSexta);
+    let segundaFeira = new Date('July 30, 2019 01:15:00').adicionarDias(diasParaSegunda);
+    let sextaFeira = new Date('July 30, 2019 01:15:00').adicionarDias(diasParaSexta);
 
     //Busca no Banco
     var sqlCardapio = `select * from Cardapio where Data between '${segundaFeira.formatar()}' and '${sextaFeira.formatar()}'`;
     var sqlMerendas = `select c.Data, a.Id, a.Nome, a.Descricao, x.Titulo as 'Categoria' from Cardapio_Alimento c
                          inner join Alimento a on c.IdAlimento = a.Id 
                          inner join Categoria x on a.Categoria = x.Id
-                        where c.Data between '${segundaFeira.formatar()}' and '${sextaFeira.formatar()}'`;
+                        where c.Data between '${segundaFeira.formatar()}' and '${sextaFeira.formatar()}'
+                        order by c.Data`;
 
     bancoDeDados.conexao.query(sqlCardapio, (erro, resultado) => {
         if (erro)
