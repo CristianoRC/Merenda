@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Merenda</title>
+    <link rel="icon" type="image/png" href="./images/food.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center">Merenda</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="carousel">
+            <a class="carousel-item" onclick="atualizarDados(0)" href="#one!">
+                <img src="./images/Segunda.png" alt="Segunda-Feira">
+            </a>
+            <a class="carousel-item" onclick="atualizarDados(1)" href="#two!">
+                <img src="./images/Terca.png" alt="Terca-Feira">
+            </a>
+            <a class="carousel-item" onclick="atualizarDados(2)" href="#three!">
+                <img src="./images/Quarta.png" alt="Quarta-Feira">
+            </a>
+            <a class="carousel-item" onclick="atualizarDados(3)" href="#four!">
+                <img src="./images/Quinta.png" alt="Quinta-Feira">
+            </a>
+            <a class="carousel-item" onclick="atualizarDados(4)" href="#five!">
+                <img src="./images/Sexta.png" alt="Sexta-feita">
+            </a>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div id="diaDaSemana">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"> </script> <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {});
+
+            var elemsCarousel = document.querySelectorAll('.carousel');
+            var instancesCarousel = M.Carousel.init(elemsCarousel, { shift: 60 });
+
+            ExibirMerendas();
+        });
+
+        function ExibirMerendas(params) {
+            
+        }
+
+        function atualizarDados(index) {
+            document.getElementById('diaDaSemana').innerHTML = index;
+        }
+    </script>
+</body>
+
+</html>

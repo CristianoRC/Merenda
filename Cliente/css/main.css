@@ -1,0 +1,20 @@
+/* Cores: https://coolors.co/01579b-615756-539987-52ffb8-4dfff3 */
+
+nav{
+    background-color: #539987!important;
+}
+
+/* body{
+  background-image: url('../images/food.svg');
+  background-repeat: no-repeat;
+  background-size: 50vh;
+  background-position-x: center;
+  background-position-y: 25vh;
+} */
+
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
