@@ -7,7 +7,7 @@ const bancoDeDados = require('./bancoDeDados');
 // CADASTRA UM NOVO ALIMENTO
 router.post('/', (request, response) => {
     let titulo = request.body.titulo;
-    let text = request.body.text;
+    let text = request.body.descricao;
     if (titulo && text) {
     bancoDeDados.conexao.query(`select * from Categoria where Titulo = '${titulo}' and Deletado = false`, (naoExiste, existe) => {
         if (existe.length > 0)
