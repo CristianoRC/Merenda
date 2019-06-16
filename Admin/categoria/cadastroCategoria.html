@@ -101,14 +101,19 @@
                     descricao: $("#descricao").val()
                 };
                 cadastrarCategoria(dados, (status) => {
-                    if (status == 'success') {
+               
+                   
+                    if (status == 200) {
                         M.toast({ html: 'Categoria cadastrada com sucesso' });
                         $("#titulo").val('');
                         $("#descricao").val('');
-                    }
-                    else {
-                        M.toast({ html: 'Não foi possivel cadastrar a categoria' });
-                    }
+                    } 
+                    else if (status == 400) {
+                        M.toast({ html: 'A categoria já existe' });
+                     
+                    }     
+                    else
+                        M.toast({ html: 'Não foi possivel realizar o cadastro ' });
                 });
             }
         }

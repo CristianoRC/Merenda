@@ -1,11 +1,13 @@
 
 
 function cadastrarCategoria(dados, callback) {
-    $.post('http://localhost:3000/api/categoria/', dados, (resultado, status) => {
-    callback(status);
-    }), "json" 
+    $.post('http://localhost:3000/api/categoria/', dados)
+        .done(status => { callback(200) })
+        .fail((xhr, status, error) => {
+            callback(xhr.status);
+        })
 }
- 
+
 
 function deletarCategoria(id, callback) {
     $.ajax({
@@ -26,5 +28,5 @@ function deletarCategoria(id, callback) {
 }
 
 function obterTodasCategorias(callback) {
-    $.get(`${apiUrl}/categoria`, (dados) => callback(dados));
+    $.get(`http://localhost:3000/api/categoria`, (dados) => callback(dados));
 }
